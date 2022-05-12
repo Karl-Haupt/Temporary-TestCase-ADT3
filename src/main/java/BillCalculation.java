@@ -40,9 +40,11 @@ public class BillCalculation {
     }
 
     //TODO: Check if this is right
-//    private double calculateTax(double subtotal) {
-//        return subtotal / 100 * 15;
-//    }
+    //Ethan: I think this way is right.
+   private double calculateTax(double subtotal) {
+       return subtotal * (15/100);
+   }
+   //https://calculatevat.co.za/how-to-calculate-vat.php
 
     private int promoDiscountRate(String promoCode) {
         Map<String, Integer> promoCodes = Map.of("ONEFORALL20", 20, "ONEFORALL50", 50);
