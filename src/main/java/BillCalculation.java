@@ -19,6 +19,7 @@ public class BillCalculation {
 
         double discountedTotal = 0;
         if(promoDiscountRate(promoCode) > 0) discountedTotal = calculateDiscount(promoCode, total);
+
         return total - discountedTotal;
     }
 
@@ -31,7 +32,7 @@ public class BillCalculation {
     }
 
     private double calculateDiscount(String promoCode, double total) {
-        System.out.println(total / 100 * promoDiscountRate(promoCode));
+//        System.out.println(total / 100 * promoDiscountRate(promoCode));
         return total / 100 * promoDiscountRate(promoCode);
     }
 
@@ -56,4 +57,10 @@ public class BillCalculation {
         return menuItemList.stream().anyMatch(item -> menuItem.getName().toLowerCase().equals(item.getName().toLowerCase()));
     }
 
+    public void printBill(List<MenuItem> list) {
+        for (int i = 0; i < list.size(); i++) {
+            var item = list.get(i);
+            System.out.println("#" + i + ": " + item.getName() + " R" + item.getPrice());
+        }
+    }
 }

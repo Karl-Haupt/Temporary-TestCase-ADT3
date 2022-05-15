@@ -8,7 +8,23 @@ public class Main {
     public static void main(String[] args) {
         BillCalculation c = new BillCalculation();
 
-        List<MenuItem> list = List.of(new MenuItem("Burger", 69.99), new MenuItem("Burger", 69.99));
-        System.out.println(c.calculateBill(list, ""));
+        List<MenuItem> list = List.of(
+                new MenuItem("Burger", 69.99),
+                new MenuItem("Burger", 69.99)
+        );
+
+        c.printBill(list);
+        System.out.println();
+        System.out.println("Bill Total: R" + c.calculateBill(list, ""));
+
+        System.out.println("--------------------------------------------");
+
+        List<MenuItem> listWithDicount = List.of(
+                new MenuItem("Burger", 100.00)
+        );
+
+        c.printBill(listWithDicount);
+        System.out.println();
+        System.out.println("Bill Total: R" + c.calculateBill(listWithDicount, "ONEFORALL20"));
     }
 }
