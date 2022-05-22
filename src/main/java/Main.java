@@ -7,32 +7,24 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-
         BillCalculation c = new BillCalculation();
+
         List<MenuItem> list = List.of(
                 new MenuItem("Burger", 69.99),
                 new MenuItem("Burger", 69.99)
         );
+
         ArrayList<MenuItem> menuItemslist = new ArrayList<>();
         menuItemslist.addAll(list);
 
-        DisplayBill bb = new DisplayBill(menuItemslist, c.calculateBill(list, ""));
-
-
-
-
-        c.printBill(list);
-        System.out.println();
-        System.out.println("Bill Total: R" + c.calculateBill(list, ""));
-
-        System.out.println("--------------------------------------------");
+        DisplayBill displayBill = new DisplayBill(menuItemslist, c.calculateBill(list, ""));
 
         List<MenuItem> listWithDicount = List.of(
                 new MenuItem("Burger", 100.00)
         );
+        ArrayList<MenuItem> itemArrayList = new ArrayList<>();
+        itemArrayList.addAll(listWithDicount);
 
-        c.printBill(listWithDicount);
-        System.out.println();
-        System.out.println("Bill Total: R" + c.calculateBill(listWithDicount, "ONEFORALL20"));
+        DisplayBill displayDiscountedBill = new DisplayBill(itemArrayList, c.calculateBill(itemArrayList, "ONEFORALL20"));
     }
 }

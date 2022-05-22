@@ -41,7 +41,7 @@ public class DisplayBill {
             i++;
         }
 
-        pnlTotal.add(new JLabel("Bill Total: " + total));
+        pnlTotal.add(new JLabel("Bill Total: R" + total));
 
         frame.add(pnlList, BorderLayout.CENTER);
         frame.add(pnlTotal, BorderLayout.SOUTH);
