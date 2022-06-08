@@ -1,4 +1,5 @@
 import GUI.DisplayBill;
+import Helper.BillCalculation;
 import domain.MenuItem;
 
 import java.util.ArrayList;
@@ -10,21 +11,13 @@ public class Main {
         BillCalculation c = new BillCalculation();
 
         List<MenuItem> list = List.of(
-                new MenuItem("Burger", 69.99),
-                new MenuItem("Burger", 69.99)
+                new MenuItem("Burger", 50.00),
+                new MenuItem("Burger", 50.00)
         );
 
         ArrayList<MenuItem> menuItemslist = new ArrayList<>();
         menuItemslist.addAll(list);
 
         DisplayBill displayBill = new DisplayBill(menuItemslist, c.calculateBill(list, ""));
-
-        List<MenuItem> listWithDicount = List.of(
-                new MenuItem("Burger", 100.00)
-        );
-        ArrayList<MenuItem> itemArrayList = new ArrayList<>();
-        itemArrayList.addAll(listWithDicount);
-
-        DisplayBill displayDiscountedBill = new DisplayBill(itemArrayList, c.calculateBill(itemArrayList, "ONEFORALL20"));
     }
 }

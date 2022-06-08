@@ -1,8 +1,7 @@
+import Helper.BillCalculation;
 import domain.MenuItem;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -53,7 +52,7 @@ class BillCalculationTest {
 //    @Test
 //    public void testInvalidPromoCode() {
 //        List<MenuItem> list = Arrays.asList(new MenuItem("Burger", 69.99));
-//        var bill = new BillCalculation().calculateBill(list, "NONEFORALL20");
+//        var bill = new Helper.BillCalculation().calculateBill(list, "NONEFORALL20");
 //        assertEquals(69.99, bill);
 //    }
 

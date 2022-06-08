@@ -1,3 +1,5 @@
+package Helper;
+
 import domain.MenuItem;
 
 import javax.swing.*;
