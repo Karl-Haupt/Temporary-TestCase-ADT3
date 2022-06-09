@@ -31,10 +31,10 @@ public class DisplayPaymentOptions implements ActionListener {
     }
 
     private void setGUI() {
-        pnlOptions.setBackground(Color.decode("#f59b42"));
-        lblOptions.setBackground(Color.decode("#f59b42"));
-        frame.setBackground(Color.decode("#f59b42"));
-        pnlHeading.setBackground(Color.decode("#f59b42"));
+        pnlOptions.setBackground(Color.decode("#808080"));
+        lblOptions.setBackground(Color.decode("#808080"));
+        frame.setBackground(Color.decode("#808080"));
+        pnlHeading.setBackground(Color.decode("#808080"));
         btnCash.setBackground(Color.GREEN);
         btnCard.setBackground(Color.GREEN);
         btnSnap.setBackground(Color.GREEN);

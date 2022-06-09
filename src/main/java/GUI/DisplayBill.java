@@ -29,11 +29,11 @@ public class DisplayBill implements ActionListener {
     }
 
     private void setGUI(ArrayList<MenuItem> items, double total) {
-        pnlList.setBackground(Color.decode("#f59b42"));
+        pnlList.setBackground(Color.decode("#808080"));
         pnlList.setLayout(new BoxLayout(pnlList, BoxLayout.Y_AXIS));
         pnlList.setBorder(BorderFactory.createEmptyBorder(100, 80, 0, 0));
         btnProcessBill.setLayout(new GridLayout(2, 1));
-        btnProcessBill.setBackground(Color.decode("#f59b42"));
+        btnProcessBill.setBackground(Color.decode("#808080"));
         btnBack.setBackground(Color.decode("#f59b42"));
 
         btnProcessBill.addActionListener(this);
