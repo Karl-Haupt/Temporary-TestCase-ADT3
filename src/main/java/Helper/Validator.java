@@ -1,5 +1,9 @@
 package Helper;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Validator {
 
     public static boolean isValidCVVNumber(String CvvNum) {
@@ -37,5 +41,23 @@ public class Validator {
 
     private static boolean isEmpty(String value) {
         return value == null || value.isEmpty();
+    }
+
+    public static boolean isValidExpiryDate(String expDate) {
+        String currentDate = "06/22";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/yy");
+        Date expiryDate = null;
+        Date currDate = null;
+        try {
+            expiryDate = simpleDateFormat.parse(expDate);
+            currDate = simpleDateFormat.parse(currentDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        if (expiryDate.after(currDate)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

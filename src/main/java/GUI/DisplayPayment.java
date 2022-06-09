@@ -62,20 +62,21 @@ public class DisplayPayment implements ActionListener {
         frame.setVisible(true);
         frame.setSize(450, 200);
         frame.setDefaultCloseOperation(JInternalFrame.EXIT_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
 
         setOptions();
         setGUI();
     }
 
     public void setGUI() {
-        pnlBillDetails.setBackground(Color.decode("#808080"));
-        pnlCustomerDetails.setBackground(Color.decode("#808080"));
-        pnlProcessPayment.setBackground(Color.decode("#808080"));
+        pnlBillDetails.setBackground(Color.lightGray);
+        pnlCustomerDetails.setBackground(Color.lightGray);
+        pnlProcessPayment.setBackground(Color.lightGray);
 
         pnlBillDetails.setLayout(new GridLayout(3, 3));
         pnlCustomerDetails.setLayout(new GridLayout(2, 3));
 
-        btnProcess.setBackground(Color.GREEN);
+        btnProcess.setBackground(Color.CYAN);
         btnProcess.addActionListener(this);
 
         pnlBillDetails.add(lblWaiterName);
@@ -148,7 +149,8 @@ public class DisplayPayment implements ActionListener {
     }
 
     private boolean validCard() {
-        if(!Validator.isValidCVVNumber(txtCVC.getText()) || !Validator.isValidCardNumber(txtCardNum.getText()) || !Validator.isValidPIN(txtPIN.getText()))
+        if(!Validator.isValidCVVNumber(txtCVC.getText()) || !Validator.isValidCardNumber(txtCardNum.getText()) ||
+                !Validator.isValidPIN(txtPIN.getText()) || !Validator.isValidExpiryDate(txtExpDate.getText()))
             return false;
         return true;
     }

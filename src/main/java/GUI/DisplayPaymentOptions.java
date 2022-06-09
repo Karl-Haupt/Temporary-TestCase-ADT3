@@ -26,18 +26,19 @@ public class DisplayPaymentOptions implements ActionListener {
         frame.setVisible(true);
         frame.setSize(300, 200);
         frame.setDefaultCloseOperation(JInternalFrame.EXIT_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
 
         setGUI();
     }
 
     private void setGUI() {
-        pnlOptions.setBackground(Color.decode("#808080"));
-        lblOptions.setBackground(Color.decode("#808080"));
-        frame.setBackground(Color.decode("#808080"));
-        pnlHeading.setBackground(Color.decode("#808080"));
-        btnCash.setBackground(Color.GREEN);
-        btnCard.setBackground(Color.GREEN);
-        btnSnap.setBackground(Color.GREEN);
+        pnlOptions.setBackground(Color.lightGray);
+        lblOptions.setBackground(Color.lightGray);
+        frame.setBackground(Color.lightGray);
+        pnlHeading.setBackground(Color.lightGray);
+        btnCash.setBackground(Color.CYAN);
+        btnCard.setBackground(Color.CYAN);
+        btnSnap.setBackground(Color.CYAN);
 
         btnCash.addActionListener(this);
         btnCard.addActionListener(this);
