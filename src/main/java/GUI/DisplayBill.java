@@ -15,7 +15,7 @@ public class DisplayBill implements ActionListener {
     private JButton btnProcessBill, btnBack;
 
     public DisplayBill(ArrayList<MenuItem> items, double total) {
-        this.frame = new JFrame("Table #9: Bill Total");
+        this.frame = new JFrame("Table #9: Bill");
         this.pnlList = new JPanel();
         this.pnlTotal = new JPanel();
         this.btnProcessBill = new JButton("Process Bill");

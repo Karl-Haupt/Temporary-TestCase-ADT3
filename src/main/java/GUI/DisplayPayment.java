@@ -16,8 +16,8 @@ import java.util.List;
 public class DisplayPayment implements ActionListener {
     private JFrame frame;
     private JPanel pnlBillDetails, pnlCustomerDetails, pnlProcessPayment;
-    private JLabel lblWaiterName, lblTotalAmount, lblPaymentOption, lblTip, lblCVC, lblCardNum,lblPIN, lblTotal;
-    private JTextField txtWaiterName, txtTotalAmount, txtPaymentOption, txtTip, txtCVC, txtCardNum;
+    private JLabel lblWaiterName, lblTotalAmount, lblPaymentOption, lblTip, lblCVC, lblCardNum,lblPIN, lblTotal, lblCashRecieved, lblExpDate;
+    private JTextField txtWaiterName, txtTotalAmount, txtPaymentOption, txtTip, txtCVC, txtCardNum, txtCashRecieved, txtExpDate;
     private JPasswordField txtPIN;
     private JButton btnProcess;
 
@@ -47,11 +47,15 @@ public class DisplayPayment implements ActionListener {
         lblCardNum = new JLabel("Card Number: ");
         lblPIN = new JLabel("PIN : ");
         lblTotal = new JLabel("Total Amount(R): " + total);
+        lblCashRecieved = new JLabel("Cash Received: ");
+        lblExpDate = new JLabel("Exp Date: ");
 
         txtTip = new JTextField("0");
         txtCVC = new JTextField();
         txtCardNum = new JTextField();
         txtPIN = new JPasswordField();
+        txtCashRecieved = new JTextField("0");
+        txtExpDate = new JTextField("");
 
         btnProcess = new JButton("Process Payment");
 
@@ -64,11 +68,11 @@ public class DisplayPayment implements ActionListener {
     }
 
     public void setGUI() {
-        pnlBillDetails.setBackground(Color.decode("#f59b42"));
-        pnlCustomerDetails.setBackground(Color.decode("#f59b42"));
-        pnlProcessPayment.setBackground(Color.decode("#f59b42"));
+        pnlBillDetails.setBackground(Color.decode("#808080"));
+        pnlCustomerDetails.setBackground(Color.decode("#808080"));
+        pnlProcessPayment.setBackground(Color.decode("#808080"));
 
-        pnlBillDetails.setLayout(new GridLayout(2, 3));
+        pnlBillDetails.setLayout(new GridLayout(3, 3));
         pnlCustomerDetails.setLayout(new GridLayout(2, 3));
 
         btnProcess.setBackground(Color.GREEN);
@@ -79,6 +83,9 @@ public class DisplayPayment implements ActionListener {
         pnlBillDetails.add(lblPaymentOption);
         pnlBillDetails.add(lblTip);
         pnlBillDetails.add(txtTip);
+        pnlBillDetails.add(new JLabel());
+        pnlBillDetails.add(lblCashRecieved);
+        pnlBillDetails.add(txtCashRecieved);
 
         pnlCustomerDetails.add(lblCVC);
         pnlCustomerDetails.add(txtCVC);
@@ -86,7 +93,8 @@ public class DisplayPayment implements ActionListener {
         pnlCustomerDetails.add(txtCardNum);
         pnlCustomerDetails.add(lblPIN);
         pnlCustomerDetails.add(txtPIN);
-        pnlCustomerDetails.add(new JLabel());
+        pnlCustomerDetails.add(lblExpDate);
+        pnlCustomerDetails.add(txtExpDate);
 
         pnlProcessPayment.add(lblTotal);
         pnlProcessPayment.add(btnProcess);
@@ -100,10 +108,14 @@ public class DisplayPayment implements ActionListener {
         if(this.paymentOption.equals("Cash")) {
             txtCVC.setText("NOT APPLICABLE");
             txtCardNum.setText("NOT APPLICABLE");
-            txtPIN.setText("NOT APPLICABLE");
+            txtExpDate.setText("NOT APPLICABLE");
             txtCVC.setEnabled(false);
             txtCardNum.setEnabled(false);
             txtPIN.setEnabled(false);
+            txtExpDate.setEnabled(false);
+        } else {
+            txtCashRecieved.setText("NOT APPLICABLE");
+            txtCashRecieved.setEnabled(false);
         }
     }
 
@@ -121,9 +133,13 @@ public class DisplayPayment implements ActionListener {
             else new JOptionPane().showMessageDialog(null, "Error: Payment unsuccessful");
         } else if(btnProcess == e.getSource()) {
             if(Validator.isValidTip(txtTip.getText())) {
+//                Double cashRecieved = Double.parseDouble(txtCashRecieved.getText());
+                double totalChange = Double.parseDouble(txtCashRecieved.getText())  - (total + Double.parseDouble(txtTip.getText()));
                 total += Double.parseDouble(txtTip.getText());
                 lblTotal.setText("Total Amount(R): " + total);
-                new JOptionPane().showMessageDialog(null, "Thank you, Payment Successful \n Bill Total: " + total);
+                new JOptionPane().showMessageDialog(null, "Thank you, Payment Successful " +
+                        "\n Bill Total: " + total +
+                        "\n Total Change: " + totalChange);
                 var db = new DisplayBill(new ArrayList<>(), new BillCalculation().calculateBill(new ArrayList<>(), ""));
                 db.getBtnProcessBill().setEnabled(false);
                 this.frame.dispose();
