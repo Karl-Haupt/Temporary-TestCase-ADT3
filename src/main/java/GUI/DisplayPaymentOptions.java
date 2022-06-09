@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 
 public class DisplayPaymentOptions implements ActionListener {
     private JFrame frame;
-    private JPanel pnlOptions;
+    private JPanel pnlOptions, pnlHeading;
     private JLabel lblOptions;
 
     private JButton btnCash, btnCard, btnSnap;
@@ -16,6 +16,7 @@ public class DisplayPaymentOptions implements ActionListener {
     public DisplayPaymentOptions() {
         this.frame = new JFrame("Table #9: Payment Options");
         this.pnlOptions = new JPanel();
+        this.pnlHeading = new JPanel();
         this.lblOptions = new JLabel("Choose Payment Option: ");
 
         this.btnCash = new JButton("Cash");
@@ -33,6 +34,7 @@ public class DisplayPaymentOptions implements ActionListener {
         pnlOptions.setBackground(Color.decode("#f59b42"));
         lblOptions.setBackground(Color.decode("#f59b42"));
         frame.setBackground(Color.decode("#f59b42"));
+        pnlHeading.setBackground(Color.decode("#f59b42"));
         btnCash.setBackground(Color.GREEN);
         btnCard.setBackground(Color.GREEN);
         btnSnap.setBackground(Color.GREEN);
@@ -45,30 +47,23 @@ public class DisplayPaymentOptions implements ActionListener {
         pnlOptions.add(btnCard, BorderLayout.CENTER);
         pnlOptions.add(btnSnap, BorderLayout.EAST);
 
-        frame.add(lblOptions, BorderLayout.NORTH);
+        pnlHeading.add(lblOptions, BorderLayout.CENTER);
+
+        frame.add(pnlHeading, BorderLayout.NORTH);
         frame.add(pnlOptions, BorderLayout.CENTER);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if(btnCash == e.getSource()) {
+            this.frame.dispose();
             DisplayPayment displayPayment = new DisplayPayment("Cash");
         } else if(btnCard == e.getSource()) {
+            this.frame.dispose();
             DisplayPayment displayPayment = new DisplayPayment("Card");
         } else if(btnSnap == e.getSource()) {
+            this.frame.dispose();
             DisplayPayment displayPayment = new DisplayPayment("SnapScan");
         }
-    }
-
-    public JButton getBtnCash() {
-        return btnCash;
-    }
-
-    public JButton getBtnCard() {
-        return btnCard;
-    }
-
-    public JButton getBtnSnap() {
-        return btnSnap;
     }
 }

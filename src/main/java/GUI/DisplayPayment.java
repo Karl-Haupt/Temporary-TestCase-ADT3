@@ -98,6 +98,9 @@ public class DisplayPayment implements ActionListener {
 
     private void setOptions() {
         if(this.paymentOption.equals("Cash")) {
+            txtCVC.setText("NOT APPLICABLE");
+            txtCardNum.setText("NOT APPLICABLE");
+            txtPIN.setText("NOT APPLICABLE");
             txtCVC.setEnabled(false);
             txtCardNum.setEnabled(false);
             txtPIN.setEnabled(false);
@@ -110,9 +113,10 @@ public class DisplayPayment implements ActionListener {
             total += Double.parseDouble(txtTip.getText());
             if(validCard() && Validator.isValidTip(txtTip.getText())) {
                 lblTotal.setText("Total Amount(R): " + total);
-                new JOptionPane().showMessageDialog(null, "Thank you, Payment Successful \n Bill Total: " + total);
                 this.frame.dispose();
-                new DisplayBill(menuItemslist, new BillCalculation().calculateBill(list, ""));
+                new JOptionPane().showMessageDialog(null, "Thank you, Payment Successful \n Bill Total: " + total);
+                var db =  new DisplayBill(new ArrayList<>(), new BillCalculation().calculateBill(new ArrayList<>(), ""));
+                db.getBtnProcessBill().setEnabled(false);
             }
             else new JOptionPane().showMessageDialog(null, "Error: Payment unsuccessful");
         } else if(btnProcess == e.getSource()) {
@@ -120,8 +124,9 @@ public class DisplayPayment implements ActionListener {
                 total += Double.parseDouble(txtTip.getText());
                 lblTotal.setText("Total Amount(R): " + total);
                 new JOptionPane().showMessageDialog(null, "Thank you, Payment Successful \n Bill Total: " + total);
+                var db = new DisplayBill(new ArrayList<>(), new BillCalculation().calculateBill(new ArrayList<>(), ""));
+                db.getBtnProcessBill().setEnabled(false);
                 this.frame.dispose();
-                new DisplayBill(menuItemslist, new BillCalculation().calculateBill(list, ""));
             }
         }
     }
@@ -131,6 +136,5 @@ public class DisplayPayment implements ActionListener {
             return false;
         return true;
     }
-
 
 }

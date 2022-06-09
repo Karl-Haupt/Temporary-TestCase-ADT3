@@ -11,13 +11,15 @@ import java.util.ArrayList;
 public class DisplayBill implements ActionListener {
     private JFrame frame;
     private JPanel pnlList, pnlTotal;
-    private JButton btnProcessBill;
+
+    private JButton btnProcessBill, btnBack;
 
     public DisplayBill(ArrayList<MenuItem> items, double total) {
         this.frame = new JFrame("Table #9: Bill Total");
         this.pnlList = new JPanel();
         this.pnlTotal = new JPanel();
         this.btnProcessBill = new JButton("Process Bill");
+        this.btnBack = new JButton("Back");
 
         frame.setVisible(true);
         frame.setSize(300, 300);
@@ -32,8 +34,10 @@ public class DisplayBill implements ActionListener {
         pnlList.setBorder(BorderFactory.createEmptyBorder(100, 80, 0, 0));
         btnProcessBill.setLayout(new GridLayout(2, 1));
         btnProcessBill.setBackground(Color.decode("#f59b42"));
+        btnBack.setBackground(Color.decode("#f59b42"));
 
         btnProcessBill.addActionListener(this);
+        btnBack.addActionListener(this);
 
         pnlTotal.setBackground(Color.GREEN);
 
@@ -44,6 +48,7 @@ public class DisplayBill implements ActionListener {
             i++;
         }
 
+        pnlTotal.add(btnBack);
         pnlTotal.add(new JLabel("Bill Total: R" + total));
         pnlTotal.add(btnProcessBill);
 
@@ -57,5 +62,9 @@ public class DisplayBill implements ActionListener {
             DisplayPaymentOptions displayPaymentOptions = new DisplayPaymentOptions();
             frame.dispose();
         }
+    }
+
+    public JButton getBtnProcessBill() {
+        return btnProcessBill;
     }
 }

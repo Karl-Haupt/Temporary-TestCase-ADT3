@@ -8,8 +8,6 @@ import java.util.*;
 public class BillCalculation {
 
     public double calculateBill(List<MenuItem> menuItemsList, String promoCode) {
-        if(isEmptyOrNull(menuItemsList)) throw new IllegalArgumentException("Error: Invalid Menu Items passed");
-
         double total = 0;
         for (MenuItem item : menuItemsList) {
             if(!isPositive(item.getPrice())) throw new IllegalStateException("Error: Menu Item invalid value(s) - " + item.getName());
@@ -25,16 +23,11 @@ public class BillCalculation {
         return total - discountedTotal;
     }
 
-    private boolean isEmptyOrNull(List<MenuItem> menuItemList) {
-        return menuItemList == null || menuItemList.isEmpty() ;
-    }
-
     private boolean isPositive(double price) {
         return price > 0;
     }
 
     private double calculateDiscount(String promoCode, double total) {
-//        System.out.println(total / 100 * promoDiscountRate(promoCode));
         return total / 100 * promoDiscountRate(promoCode);
     }
 
@@ -45,7 +38,6 @@ public class BillCalculation {
 
     public int promoDiscountRate(String promoCode) {
         Map<String, Integer> promoCodes = Map.of("ONEFORALL20", 20, "ONEFORALL50", 50);
-//        if(!promoCodes.containsKey(promoCode)) JOptionPane.showMessageDialog(null, "Error: Invalid Discount Code");
         return promoCodes.getOrDefault(promoCode, 0);
     }
 

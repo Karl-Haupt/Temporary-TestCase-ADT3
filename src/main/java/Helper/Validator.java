@@ -28,7 +28,7 @@ public class Validator {
 
     public static boolean isValidTip(String tip) {
         double t = Double.parseDouble(tip);
-        return (t > 0);
+        return (t >= 0);
     }
 
     private static boolean isValidLength(String value, int length) {
